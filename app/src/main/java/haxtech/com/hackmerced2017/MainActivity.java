@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.v(TAG, "HEREE");
         ViewPager pager=(ViewPager)findViewById(R.id.pager);
         record_button = (FloatingActionButton) findViewById(R.id.fab_button);
 

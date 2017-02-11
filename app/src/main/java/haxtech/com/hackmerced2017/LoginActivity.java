@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+    private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 0;
     private FirebaseAuth auth;
     private DatabaseReference mDatabase;
@@ -56,12 +57,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.v(TAG,"dfsfd");
         if(requestCode == RC_SIGN_IN){
             if(resultCode == RESULT_OK){
                 // user logged in
                 FirebaseUser firebaseUser = auth.getCurrentUser();
                 createUserIfDoesNotExist(firebaseUser);
                 Log.d("AUTH", firebaseUser.getUid());
+
+                Intent main_intent = new Intent(this, MainActivity.class);
+                //TODO: pass user to main activity
+                startActivity(main_intent);
             } else {
                 //user not authenticated
                 Log.d("AUTH", "NOT AUTHENTICATED");

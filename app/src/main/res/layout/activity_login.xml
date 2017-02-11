@@ -19,4 +19,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="67dp"
         android:id="@+id/log_out_button"/>
+
+    <Button
+        android:text="Make Post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="67dp"
+        android:id="@+id/make_post_button"/>
 </RelativeLayout>

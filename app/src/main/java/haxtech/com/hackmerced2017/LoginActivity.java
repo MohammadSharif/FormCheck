@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser() != null){
             // User has already signed in
-            Log.d("AUTH", auth.getCurrentUser().getEmail());
+            Log.d("AUTH", auth.getCurrentUser().getUid());
         } else {
             startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().setProviders(
                     AuthUI.FACEBOOK_PROVIDER,
@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
         findViewById(R.id.log_out_button).setOnClickListener(this);
+        findViewById(R.id.make_post_button).setOnClickListener(this);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(requestCode == RC_SIGN_IN){
             if(resultCode == RESULT_OK){
                 // user logged in
-                Log.d("AUTH", auth.getCurrentUser().getEmail());
+                Log.d("AUTH", auth.getCurrentUser().getUid());
             } else {
                 //user not authenticated
                 Log.d("AUTH", "NOT AUTHENTICATED");
@@ -57,9 +58,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     Log.d("AUTH", "USER HAS LOGGED OUT");
+                    auth.signOut();
                     finish();
+
                 }
             });
+        } else if(v.getId() == R.id.make_post_button) {
+            Intent intent = new Intent(this, CreatePostActivity.class);
+            startActivity(intent);
         }
     }
 }

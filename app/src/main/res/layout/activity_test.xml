@@ -33,4 +33,13 @@
         app:layout_anchorGravity="bottom|center_horizontal"
         android:layout_gravity="top|center_horizontal" />
 
+    <VideoView
+        android:layout_width="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_height="fill_parent"
+        android:id="@+id/mVideoView" />
+
 </android.support.design.widget.CoordinatorLayout>

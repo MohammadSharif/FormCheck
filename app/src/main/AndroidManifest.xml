@@ -27,6 +27,10 @@
             android:name=".PostActivity"
             android:label="@string/title_activity_post"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+        android:name=".CreatePostActivity"
+        android:label="@string/title_activity_create_post"
+        android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

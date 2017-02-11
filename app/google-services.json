@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "613498695598",
+    "firebase_url": "https://hackmerced2017.firebaseio.com",
+    "project_id": "hackmerced2017",
+    "storage_bucket": "hackmerced2017.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613498695598:android:56f14f79eb8e949c",
+        "android_client_info": {
+          "package_name": "haxtech.com.hackmerced2017"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613498695598-ei367oeg9cfmkcpa783kvdo6fgnuf7r1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "haxtech.com.hackmerced2017",
+            "certificate_hash": "05FC5E24AB9FBE2904C99C0C6DE257FE810E5482"
+          }
+        },
+        {
+          "client_id": "613498695598-vjkgpnov3is3bpppsodp23jb6kgepqtr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzwgcMxbqvrb2q8RIzeJt49h675rJYRYU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613498695598-vjkgpnov3is3bpppsodp23jb6kgepqtr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

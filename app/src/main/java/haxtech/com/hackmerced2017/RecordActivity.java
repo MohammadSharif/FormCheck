@@ -27,6 +27,7 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
     private VideoView mVideoView;
     private Uri videoUri;
     private ImageView playButton;
+    private Button submitButton;
 
     final int REQUEST_VIDEO_CAPTURE = 1;
 
@@ -38,6 +39,7 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
 
         mVideoView = (VideoView) findViewById(R.id.recorded_video);
         playButton = (ImageView) findViewById(R.id.recorded_video_play_button);
+        submitButton = (Button) findViewById(R.id.recording_button_submit);
         Spinner categorieSpinner = (Spinner) findViewById(R.id.categorieSpinner);
         categorieSpinner.setOnItemSelectedListener(this);
         List<String> categories = new ArrayList<String>();
@@ -52,9 +54,12 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
         //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorieSpinner.setAdapter(dataAdapter);
 
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
-
+            }
+        });
     }
 
     private void dispatchTakeVideoIntent() {

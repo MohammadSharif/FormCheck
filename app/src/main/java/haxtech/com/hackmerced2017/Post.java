@@ -3,41 +3,36 @@ package haxtech.com.hackmerced2017;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 @IgnoreExtraProperties
 public class Post {
 
-    public String uid;
     public String userID;
     public String body;
-    public ArrayList<String> commentIDs;
+    public double avgRating;
+    public String vidUrl;
 
     public Post() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 
-    public Post(String uid, String userID, String body) {
-        this.uid = uid;
+    public Post(String userID, String body, String vidUrl) {
         this.userID = userID;
         this.body = body;
-        this.commentIDs = new ArrayList<>();
+        this.vidUrl = vidUrl;
+        this.avgRating = 0.0;
     }
 
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("uid", uid);
         result.put("userID", userID);
         result.put("body", body);
-        result.put("comments", commentIDs);
+        result.put("avgRating", avgRating);
+        result.put("vidUrl", vidUrl);
         return result;
-    }
-
-    public void newComment(String commentID){
-        commentIDs.add(commentID);
     }
 
 }

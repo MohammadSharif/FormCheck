@@ -4,4 +4,7 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_post">PostActivity</string>
     <string name="title_activity_create_post">CreatePostActivity</string>
+    <string name="hello_blank_fragment">hello!</string>
+    <string name="hint">test %d</string>
+    <string name="recording_name">Enter Title</string>
 </resources>

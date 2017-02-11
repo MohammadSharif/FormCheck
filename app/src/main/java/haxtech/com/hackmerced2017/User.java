@@ -10,7 +10,7 @@ public class User {
     public String uid;
     public String name;
     public String email;
-    public ArrayList<Post> posts;
+    public ArrayList<String> postIDs;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
@@ -19,7 +19,7 @@ public class User {
     public User(String uid, String name, String email) {
         this.name = name;
         this.email = email;
-        posts = new ArrayList<>();
+        postIDs = new ArrayList<>();
     }
 
     @Exclude
@@ -27,7 +27,11 @@ public class User {
         HashMap<String, Object> result = new HashMap<>();
         result.put("name", name);
         result.put("email", email);
-        result.put("posts", posts);
+        result.put("posts", postIDs);
         return result;
+    }
+
+    public void newPost(String postData){
+        this.postIDs.add(postData);
     }
 }

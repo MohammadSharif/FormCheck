@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
             });
         } else if(v.getId() == R.id.make_post_button) {
-            Intent intent = new Intent(this, CreatePostActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
     }

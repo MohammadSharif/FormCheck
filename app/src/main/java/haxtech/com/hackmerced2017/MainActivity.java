@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         pager.setAdapter(adapter);
 
         tabs = (TabLayout) findViewById(R.id.tabs);
+        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
         tabs.setupWithViewPager(pager);
         adapter.setPageCount(4);
         tabs.setTabMode(TabLayout.MODE_SCROLLABLE);

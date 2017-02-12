@@ -41,6 +41,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // User has already signed in
             createUserIfDoesNotExist(auth.getCurrentUser());
             Log.d("AUTH", auth.getCurrentUser().getUid());
+            Intent main_intent = new Intent(this, MainActivity.class);
+            //TODO: pass user to main activity
+            startActivity(main_intent);
         } else {
             startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().setProviders(
                     AuthUI.FACEBOOK_PROVIDER,

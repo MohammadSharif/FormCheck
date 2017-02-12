@@ -43,12 +43,10 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
         Spinner categorieSpinner = (Spinner) findViewById(R.id.categorieSpinner);
         categorieSpinner.setOnItemSelectedListener(this);
         List<String> categories = new ArrayList<String>();
-        categories.add("Automobile");
-        categories.add("Business Services");
-        categories.add("Computers");
-        categories.add("Education");
-        categories.add("Personal");
-        categories.add("Travel");
+        categories.add("Chest");
+        categories.add("Back");
+        categories.add("Legs");
+        categories.add("Full Body");
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 0;
     private FirebaseAuth auth;
@@ -53,8 +53,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
-        findViewById(R.id.log_out_button).setOnClickListener(this);
-        findViewById(R.id.make_post_button).setOnClickListener(this);
+//        findViewById(R.id.log_out_button).setOnClickListener(this);
+//        findViewById(R.id.make_post_button).setOnClickListener(this);
     }
 
     @Override
@@ -78,23 +78,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        if(v.getId() == R.id.log_out_button){
-            AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    Log.d("AUTH", "USER HAS LOGGED OUT");
-                    auth.signOut();
-                    finish();
-
-                }
-            });
-        } else if(v.getId() == R.id.make_post_button) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        if(v.getId() == R.id.log_out_button){
+//            AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                @Override
+//                public void onComplete(@NonNull Task<Void> task) {
+//                    Log.d("AUTH", "USER HAS LOGGED OUT");
+//                    auth.signOut();
+//                    finish();
+//
+//                }
+//            });
+//        } else if(v.getId() == R.id.make_post_button) {
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+//        }
+//    }
 
     private void createUserIfDoesNotExist(FirebaseUser user) {
         final FirebaseUser finalUser = user;

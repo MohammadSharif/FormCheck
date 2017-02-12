@@ -34,7 +34,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
             card = c;
             user = (TextView) c.findViewById(R.id.CardView_Username);
             category = (TextView) c.findViewById(R.id.CardView_ExerciseName);
-            video = (VideoView) c.findViewById(R.id.CardView_VideoView);
+            //video = (VideoView) c.findViewById(R.id.CardView_VideoView);
             //test = (TextView) c.findViewById(R.id.Vote_Count);
         }
     }

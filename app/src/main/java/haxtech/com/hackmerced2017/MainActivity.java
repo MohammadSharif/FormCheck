@@ -65,23 +65,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     private void setupFeed() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("posts");
         ref.addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //Get map of users in datasnapshot
-                        setupTabs(collectPosts((Map<String, Object>) dataSnapshot.getValue()));
-                    }
+            new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    //Get map of users in datasnapshot
+                    setupTabs(collectPosts((Map<String, Object>) dataSnapshot.getValue()));
+                }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        //handle databaseError
-                    }
-                });
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    //handle databaseError
+                }
+            });
     }
 
     private void setupTabs(ArrayList<PostObject>[] arrayLists) {
@@ -122,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
                     continue;
             }
         }
-
         return posts;
     }
 

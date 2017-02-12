@@ -1,11 +1,13 @@
 package haxtech.com.hackmerced2017;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import java.util.ArrayList;
 
@@ -24,13 +26,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         // each data item is just a string in this case
         public View card;
         public TextView user, body, category;
-
+        public VideoView video;
 
         public ViewHolder(View c) {
             super(c);
             card = c;
             user = (TextView) c.findViewById(R.id.CardView_Username);
             category = (TextView) c.findViewById(R.id.CardView_ExerciseName);
+            video = (VideoView) c.findViewById(R.id.CardView_VideoView);
             //test = (TextView) c.findViewById(R.id.Vote_Count);
         }
     }
@@ -55,9 +58,10 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         //holder.test.setText(mDataset[position]);
-        holder.category.setText(mDataset.get(position).toString());
-        holder.user.setText(mDataset.get(position).toString());
-
+        PostObject post = mDataset.get(position);
+        holder.category.setText(post.category);
+        holder.user.setText(post.userID);
+        holder.video.setVideoURI(Uri.parse(post.vidUrl));
     }
 
     // Return the size of your dataset (invoked by the layout manager)

@@ -41,13 +41,14 @@
     <Spinner
         android:id="@+id/categorySpinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp">
     </Spinner>
 
     <Button
         android:id="@+id/recording_button_submit"
         android:layout_width="match_parent"
-        android:layout_height="48dp" />
+        android:layout_height="48dp"
+        android:text="Upload"/>
 
 
 </LinearLayout>

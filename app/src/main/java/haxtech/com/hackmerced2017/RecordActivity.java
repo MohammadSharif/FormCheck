@@ -50,15 +50,11 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
     private static final String TAG = "RecordActivity";
     private Button button2;
     private VideoView mVideoView;
-    private Uri videoUri;
     private ImageView playButton;
     private Button submitButton;
     private EditText recording_name;
     private Spinner categorySpinner;
 
-    AlphaAnimation inAnimation;
-    AlphaAnimation outAnimation;
-    FrameLayout progressBarHolder;
     private Uri savedVideoData;
     private Uri downloadUri;
 
@@ -86,8 +82,6 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
         categories.add("Back");
         categories.add("Legs");
         categories.add("Full Body");
-
-        progressBarHolder = (FrameLayout) findViewById(R.id.progressBarHolder);
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -126,7 +120,7 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
                 public void onClick(View v) {
                 //remove play button overlay
                 playButton.setVisibility(View.GONE);
-                mVideoView.setVideoURI(videoUri);
+                mVideoView.setVideoURI(savedVideoData);
                 mVideoView.seekTo(100);
                 mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
@@ -213,29 +207,6 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     private class UploadAndPostTask extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            submitButton.setEnabled(false);
-            inAnimation = new AlphaAnimation(0f, 1f);
-            inAnimation.setDuration(5000);
-            progressBarHolder.setAnimation(inAnimation);
-            progressBarHolder.setVisibility(View.VISIBLE);
-            Log.v("PROGRESS BAR", "should show");
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            outAnimation = new AlphaAnimation(1f, 0f);
-            outAnimation.setDuration(1000);
-            progressBarHolder.setAnimation(outAnimation);
-            progressBarHolder.setVisibility(View.GONE);
-            submitButton.setEnabled(true);
-            Log.v("PROGRESS BAR", "should disappear");
-        }
-
         @Override
         protected Void doInBackground(Void... params) {
             try {

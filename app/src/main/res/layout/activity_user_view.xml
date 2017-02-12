@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_user_view_"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="haxtech.com.hackmerced2017.UserViewActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/UserView_Title"
+        android:background="@color/colorWhite"
+        android:layout_marginTop="-10dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:text="Username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/UserView_Username"
+            android:textSize="22.5sp"
+            android:paddingTop="5dp"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:text="'s"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/UserView_Possess"
+            android:paddingTop="5dp"
+            android:layout_toRightOf="@id/UserView_Username"
+            android:layout_width="25dp"
+            android:textSize="22.5sp" />
+
+        <TextView
+            android:text="Exercise Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/UserView_ExerciseName"
+            android:textSize="22.5sp"
+            android:paddingTop="5dp"
+            android:layout_toRightOf="@id/UserView_Possess"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:id="@+id/UserView_Video"
+        android:background="@android:color/black"
+        android:layout_below="@id/UserView_Title">
+
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/yellowsharebutton"
+            android:scaleType="fitCenter"
+            android:scaleX="0.75"
+            android:scaleY="0.75"
+            android:background="@android:color/black"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+
+            android:id="@+id/UserView_ShareButton" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/UserView_Info"
+        android:background="@android:color/background_light"
+        android:layout_below="@+id/UserView_Video"
+        android:layout_alignParentStart="true">
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="android:attr/ratingBarStyleSmall"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            android:id="@+id/ratingBar"
+            android:stepSize="0.1"
+            android:foregroundGravity="center_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="8dp" />
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/UserView_Comments"
+        android:layout_below="@id/UserView_Info"
+        android:background="@color/colorLightGray">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="22.5dp"
+            android:paddingTop="18dp" />
+
+        <TextView
+            android:id="@+id/txtRatingValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

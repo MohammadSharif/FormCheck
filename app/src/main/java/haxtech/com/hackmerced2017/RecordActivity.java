@@ -115,20 +115,14 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Log.v(TAG, "here");
             this.savedVideoData = intent.getData();
-            playButton.setOnClickListener(new View.OnClickListener() {
+            playButton.setVisibility(View.GONE);
+            mVideoView.setVideoURI(savedVideoData);
+            mVideoView.seekTo(100);
+            mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
-                public void onClick(View v) {
-                //remove play button overlay
-                playButton.setVisibility(View.GONE);
-                mVideoView.setVideoURI(savedVideoData);
-                mVideoView.seekTo(100);
-                mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                    @Override
-                    public void onPrepared(MediaPlayer mp) {
-                        mVideoView.start();
-                        mp.setLooping(true);
-                    }
-                });
+                public void onPrepared(MediaPlayer mp) {
+                    mVideoView.start();
+                    mp.setLooping(true);
                 }
             });
         } else {

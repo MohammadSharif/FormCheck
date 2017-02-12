@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(pager);
         adapter.setPageCount(4);
         tabs.setTabMode(TabLayout.MODE_FIXED);
+
+
     }
 
     private ArrayList<PostObject>[] collectPosts(Map<String, Object> p) {
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 case "Legs":
                     posts[2].add(parseEntry(post));
                     continue;
-                case "FullBody":
+                case "Full Body":
                     posts[3].add(parseEntry(post));
                     continue;
                 default:
@@ -134,6 +136,10 @@ public class MainActivity extends AppCompatActivity {
                 (String)post.get("vidUrl"),
                 (String)post.get("category"),
                 (Long)post.get("avgRating"));
+    }
+
+    public void test(String a){
+        Log.v(TAG, a);
     }
 
 }

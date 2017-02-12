@@ -55,6 +55,14 @@ public class TabFragment extends Fragment {
         int position=getArguments().getInt(KEY_POSITION, -1);
 
         mRecyclerView = (RecyclerView) result.findViewById(R.id.my_recycler_view);
+        mRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        // TODO Handle item click
+                        Log.v(TAG, "check");
+                    }
+                }));
         mLayoutManager = new LinearLayoutManager(result.getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         Log.v(TAG,String.valueOf(position));
@@ -76,5 +84,9 @@ public class TabFragment extends Fragment {
             default:
                 return posts[0];
         }
+    }
+
+    public void test(String a){
+        Log.v(TAG, a);
     }
 }

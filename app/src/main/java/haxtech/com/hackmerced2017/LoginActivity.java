@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.auth.api.Auth;
@@ -34,8 +35,6 @@ public class LoginActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_login);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         auth = FirebaseAuth.getInstance();

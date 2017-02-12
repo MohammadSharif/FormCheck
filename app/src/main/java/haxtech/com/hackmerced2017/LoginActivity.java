@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity{
                     AuthUI.FACEBOOK_PROVIDER,
                     AuthUI.EMAIL_PROVIDER,
                     AuthUI.GOOGLE_PROVIDER
-            ).build(), RC_SIGN_IN);
+            ).setTheme(R.style.LoginTheme).build(), RC_SIGN_IN);
         }
 
     }

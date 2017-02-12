@@ -40,6 +40,7 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
     private VideoView mVideoView;
     private Uri videoUri;
     private ImageView playButton;
+    private Button submitButton;
 
     final int REQUEST_VIDEO_CAPTURE = 1;
 
@@ -54,15 +55,14 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
 
         mVideoView = (VideoView) findViewById(R.id.recorded_video);
         playButton = (ImageView) findViewById(R.id.recorded_video_play_button);
+        submitButton = (Button) findViewById(R.id.recording_button_submit);
         Spinner categorieSpinner = (Spinner) findViewById(R.id.categorieSpinner);
         categorieSpinner.setOnItemSelectedListener(this);
         List<String> categories = new ArrayList<String>();
-        categories.add("Automobile");
-        categories.add("Business Services");
-        categories.add("Computers");
-        categories.add("Education");
-        categories.add("Personal");
-        categories.add("Travel");
+        categories.add("Chest");
+        categories.add("Back");
+        categories.add("Legs");
+        categories.add("Full Body");
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -70,6 +70,13 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReferenceFromUrl("gs://hackmerced2017.appspot.com");
+
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private void dispatchTakeVideoIntent() {
@@ -90,17 +97,17 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
             playButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //remove play button overlay
-                    playButton.setVisibility(View.GONE);
-                    mVideoView.setVideoURI(videoUri);
-                    mVideoView.seekTo(100);
-                    mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                        @Override
-                        public void onPrepared(MediaPlayer mp) {
-                            mVideoView.start();
-                            mp.setLooping(true);
-                        }
-                    });
+                //remove play button overlay
+                playButton.setVisibility(View.GONE);
+                mVideoView.setVideoURI(videoUri);
+                mVideoView.seekTo(100);
+                mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mp) {
+                        mVideoView.start();
+                        mp.setLooping(true);
+                    }
+                });
                 }
             });
         } else {

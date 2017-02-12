@@ -7,28 +7,31 @@
     tools:context="haxtech.com.hackmerced2017.RecordActivity">
 
     <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="300dp">
-    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <VideoView
-            android:id="@+id/recorded_video"
+        android:layout_height="300dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <VideoView
+                android:id="@+id/recorded_video"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/recorded_video_play_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"/>
-    </FrameLayout>
+            android:src="@drawable/ic_play_circle_outline_black_24dp"
+            android:tint="@color/gold"
+            android:scaleX="4"
+            android:scaleY="4"
+            android:scaleType="center"/>
 
-    <ImageView
-        android:id="@+id/recorded_video_play_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_play_circle_outline_black_24dp"
-        android:tint="@color/gold"
-        android:scaleX="4"
-        android:scaleY="4"
-        android:scaleType="center"/>
-</RelativeLayout>
+
+    </RelativeLayout>
 
     <EditText
         android:layout_width="match_parent"
@@ -40,5 +43,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </Spinner>
+
+    <Button
+        android:id="@+id/recording_button_submit"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
 
 </LinearLayout>

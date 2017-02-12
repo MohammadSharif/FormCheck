@@ -5,15 +5,19 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
@@ -23,16 +27,24 @@ import android.widget.VideoView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnPausedListener;
 import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class RecordActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
     private static final String TAG = "RecordActivity";
@@ -41,9 +53,19 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
     private Uri videoUri;
     private ImageView playButton;
     private Button submitButton;
+    private EditText recording_name;
+    private Spinner categorySpinner;
+
+    AlphaAnimation inAnimation;
+    AlphaAnimation outAnimation;
+    FrameLayout progressBarHolder;
+    private Uri savedVideoData;
+    private Uri downloadUri;
 
     final int REQUEST_VIDEO_CAPTURE = 1;
 
+    private FirebaseAuth auth;
+    private DatabaseReference mDatabase;
     private FirebaseStorage storage;
     private StorageReference storageRef;
 
@@ -56,17 +78,23 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
         mVideoView = (VideoView) findViewById(R.id.recorded_video);
         playButton = (ImageView) findViewById(R.id.recorded_video_play_button);
         submitButton = (Button) findViewById(R.id.recording_button_submit);
-        Spinner categorieSpinner = (Spinner) findViewById(R.id.categorieSpinner);
-        categorieSpinner.setOnItemSelectedListener(this);
+        recording_name = (EditText) findViewById(R.id.recording_name);
+        categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
+        categorySpinner.setOnItemSelectedListener(this);
         List<String> categories = new ArrayList<String>();
         categories.add("Chest");
         categories.add("Back");
         categories.add("Legs");
         categories.add("Full Body");
 
+        progressBarHolder = (FrameLayout) findViewById(R.id.progressBarHolder);
+
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categorieSpinner.setAdapter(dataAdapter);
+        categorySpinner.setAdapter(dataAdapter);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        auth = FirebaseAuth.getInstance();
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReferenceFromUrl("gs://hackmerced2017.appspot.com");
@@ -74,7 +102,7 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                new UploadAndPostTask().execute();
             }
         });
     }
@@ -92,8 +120,7 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
 
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Log.v(TAG, "here");
-            videoUri = intent.getData();
-            uploadVideo(videoUri);
+            this.savedVideoData = intent.getData();
             playButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -142,9 +169,32 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
+                StorageMetadata metadata = taskSnapshot.getMetadata();
+                saveDownloadUriAndTriggerWrite(metadata);
                 Log.v("UPLOAD", "SUCCESS");
             }
         });
+    }
+
+    private void saveDownloadUriAndTriggerWrite(StorageMetadata metadata) {
+        this.downloadUri = metadata.getDownloadUrl();
+        String selectedCategory = this.categorySpinner.getSelectedItem().toString();
+        String downloadUriStr = this.downloadUri.toString();
+        Log.v("RecordActivity", this.downloadUri.toString());
+        writeNewPost(this.recording_name.getText().toString(), downloadUriStr, selectedCategory);
+    }
+
+    private void writeNewPost(String body, String vidUrl, String category) {
+        FirebaseUser curUser = auth.getCurrentUser();
+        String key = mDatabase.child("posts").push().getKey();
+        String userID = curUser.getUid();
+        Post post = new Post(userID, body, vidUrl, category);
+        Map<String, Object> postValues = post.toMap();
+        Map<String, Object> childUpdates = new HashMap<>();
+        childUpdates.put("/posts/" + key, postValues);
+        DatabaseReference listOfPostsRef = mDatabase.child("users").child(userID).child("posts");
+        listOfPostsRef.push().setValue(key);
+        mDatabase.updateChildren(childUpdates);
     }
 
     @Override
@@ -160,5 +210,40 @@ public class RecordActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    private class UploadAndPostTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            submitButton.setEnabled(false);
+            inAnimation = new AlphaAnimation(0f, 1f);
+            inAnimation.setDuration(5000);
+            progressBarHolder.setAnimation(inAnimation);
+            progressBarHolder.setVisibility(View.VISIBLE);
+            Log.v("PROGRESS BAR", "should show");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            outAnimation = new AlphaAnimation(1f, 0f);
+            outAnimation.setDuration(1000);
+            progressBarHolder.setAnimation(outAnimation);
+            progressBarHolder.setVisibility(View.GONE);
+            submitButton.setEnabled(true);
+            Log.v("PROGRESS BAR", "should disappear");
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                uploadVideo(savedVideoData);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }

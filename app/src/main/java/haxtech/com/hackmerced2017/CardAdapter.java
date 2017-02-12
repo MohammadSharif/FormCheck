@@ -1,5 +1,6 @@
 package haxtech.com.hackmerced2017;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,9 +33,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         public ViewHolder(View c) {
             super(c);
             card = c;
-            user = (TextView) c.findViewById(R.id.CardView_Username);
-            category = (TextView) c.findViewById(R.id.CardView_ExerciseName);
-            //video = (VideoView) c.findViewById(R.id.CardView_VideoView);
+            user = (TextView) c.findViewById(R.id.UserView_Username);
+            body = (TextView) c.findViewById(R.id.UserView_ExerciseName);
+            video = (VideoView) c.findViewById(R.id.User_VideoView);
             //test = (TextView) c.findViewById(R.id.Vote_Count);
         }
     }
@@ -62,9 +63,17 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         // - replace the contents of the view with that element
         //holder.test.setText(mDataset[position]);
         PostObject post = mDataset.get(position);
-        holder.category.setText(post.category);
+        Log.v(TAG, post.body);
+        holder.body.setText(post.body);
         holder.user.setText(post.userID);
         holder.video.setVideoURI(Uri.parse(post.vidUrl));
+        holder.video.start();
+        holder.video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
     }
 
     // Return the size of your dataset (invoked by the layout manager)

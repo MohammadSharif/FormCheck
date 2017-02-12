@@ -1,6 +1,7 @@
 package haxtech.com.hackmerced2017;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -60,7 +61,14 @@ public class TabFragment extends Fragment {
                     @Override
                     public void onItemClick(View view, int position) {
                         // TODO Handle item click
-                        Log.v(TAG, "check");
+                        Intent details_intent = new Intent(getContext(), UserViewActivity.class);
+                        details_intent.putExtra("name",posts[position - 1].get(position).toString());
+                        details_intent.putExtra("body",posts[position - 1].get(position).toString());
+                        details_intent.putExtra("userID",posts[position - 1].get(position).toString());
+                        details_intent.putExtra("comments",posts[position - 1].get(position).toString());
+                        details_intent.putExtra("name",posts[position - 1].get(position).toString());
+
+                        startActivity(details_intent);
                     }
                 }));
         mLayoutManager = new LinearLayoutManager(result.getContext());

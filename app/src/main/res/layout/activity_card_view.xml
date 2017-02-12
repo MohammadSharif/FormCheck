@@ -12,13 +12,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorBackgroundGray">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:id="@+id/UserView_Title"
-            android:background="@color/colorWhite"
-            android:layout_marginTop="-10dp"
+            android:background="@color/colorBackgroundGray"
             android:gravity="center_horizontal">
 
             <TextView
@@ -28,7 +28,8 @@
                 android:id="@+id/UserView_Username"
                 android:textSize="22.5sp"
                 android:paddingTop="5dp"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:textColor="@color/buttonTextColor" />
             <TextView
                 android:text="'s"
                 android:layout_height="wrap_content"
@@ -37,7 +38,8 @@
                 android:paddingTop="5dp"
                 android:layout_toRightOf="@id/UserView_Username"
                 android:layout_width="25dp"
-                android:textSize="22.5sp" />
+                android:textSize="22.5sp"
+                android:textColor="@color/buttonTextColor" />
 
             <TextView
                 android:text="Exercise Name"
@@ -48,15 +50,15 @@
                 android:textSize="22.5sp"
                 android:paddingTop="5dp"
                 android:layout_toRightOf="@id/UserView_Possess"
-                android:textColor="@android:color/black" />
+                android:textColor="?attr/colorAccent" />
         </RelativeLayout>
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="400dp"
             android:id="@+id/UserView_Info"
-            android:background="@android:color/background_light"
+            android:background="@color/com_facebook_button_background_color_disabled"
             android:layout_below="@id/UserView_Title"
             android:layout_alignParentStart="true">
 
@@ -72,25 +74,26 @@
                 android:layout_alignParentTop="true"
                 android:id="@+id/UserView_ShareButton" />
 
-            <VideoView
-                android:id="@+id/Card_Video_VideoView"
-                android:layout_width="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_height="220dp" />
-
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="android:attr/ratingBarStyleSmall"
-                android:scaleX="1.0"
-                android:scaleY="1.0"
+                android:scaleX="0.75"
+                android:scaleY="0.75"
                 android:id="@+id/ratingBar"
                 android:stepSize="0.1"
                 android:foregroundGravity="center_horizontal"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
-                android:paddingTop="8dp" />
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/Card_Video_VideoView"
+                android:layout_marginTop="-2.5dp" />
+
+            <VideoView
+                android:id="@+id/User_VideoView"
+                android:layout_width="match_parent"
+                android:layout_height="215dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"/>
 
 
         </RelativeLayout>

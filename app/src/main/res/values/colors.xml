@@ -6,6 +6,8 @@
     <color name="gold">#FFCA28</color>
     <color name="colorLightGray">#f5f5f5</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBackgroundGray">#5E5D5D</color>
+    <color name="colorBackgroundGrayCard">#7a7a7a</color>
 
 
 </resources>

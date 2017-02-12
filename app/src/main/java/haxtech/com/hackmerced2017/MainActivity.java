@@ -132,7 +132,8 @@ public class MainActivity extends AppCompatActivity {
                 (String)post.get("userID"),
                 (String)post.get("vidUrl"),
                 (String)post.get("category"),
-                (Long)post.get("avgRating"));
+                (Long)post.get("avgRating"),
+                (String)post.get("name"));
     }
 
     public void test(String a){

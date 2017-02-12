@@ -50,15 +50,15 @@ public class MainActivity extends AppCompatActivity {
         record_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent meals_intent = new Intent(v.getContext(), RecordActivity.class);
-                startActivity(meals_intent);
+//                Intent meals_intent = new Intent(v.getContext(), RecordActivity.class);
+//                startActivity(meals_intent);
 
-//                LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-//                View popupView = layoutInflater.inflate(R.layout.popover_recorder, null);
-//                final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//
-//                layout_main.getForeground().setAlpha(200);
-//                popupWindow.showAtLocation(, Gravity.CENTER, 50, -30);
+                LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                View popupView = layoutInflater.inflate(R.layout.popover_recorder, null);
+                final PopupWindow popupWindow = new PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                layout_main.getForeground().setAlpha(200);
+                popupWindow.showAtLocation(v , Gravity.CENTER, 50, -30);
 
             }
         });
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         tabs.setTabGravity(TabLayout.GRAVITY_FILL);
         tabs.setupWithViewPager(pager);
         adapter.setPageCount(4);
-        tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabs.setTabMode(TabLayout.MODE_FIXED);
     }
 
     private ArrayList<PostObject>[] collectPosts(Map<String, Object> p) {

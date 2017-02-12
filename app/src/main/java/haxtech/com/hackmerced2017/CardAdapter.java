@@ -7,13 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by aatifshah on 2/11/17.
  */
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     private static final String TAG = "CardAdapter";
-    private String[] mDataset;
+    private ArrayList<PostObject> mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -21,17 +23,20 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public View card;
-        public TextView test;
+        public TextView user, body, category;
+
 
         public ViewHolder(View c) {
             super(c);
             card = c;
-            test = (TextView) c.findViewById(R.id.Vote_Count);
+            user = (TextView) c.findViewById(R.id.CardView_Username);
+            category = (TextView) c.findViewById(R.id.CardView_ExerciseName);
+            //test = (TextView) c.findViewById(R.id.Vote_Count);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CardAdapter(String[] myDataset) {
+    public CardAdapter(ArrayList<PostObject> myDataset) {
         mDataset = myDataset;
     }
 
@@ -40,7 +45,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public CardAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.layout_card, parent, false);
-
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -50,15 +54,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.test.setText(mDataset[position]);
-        Log.v(TAG, mDataset[position]);
+        //holder.test.setText(mDataset[position]);
+        holder.category.setText(mDataset.get(position).toString());
+        holder.user.setText(mDataset.get(position).toString());
 
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 }
 

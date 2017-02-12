@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-    <android.support.v7.widget.CardView
+<android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/Card_View"
@@ -9,48 +7,78 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         card_view:cardCornerRadius="1dp">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/Card_Video_ImageView"
-                android:layout_height="235dp"
-                android:background="@android:color/black"
-                android:layout_width="match_parent" />
-            <RelativeLayout
+            android:layout_height="50dp"
+            android:gravity="center_horizontal"
+            android:id="@+id/CardView_Title">
+            <TextView
+                android:text="Username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/CardView_Username"
+                android:textSize="22.5sp"
+                android:paddingTop="10dp"
+                android:layout_alignParentStart="true" />
+            <TextView
+                android:text="'s"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/CardView_Possess"
+                android:paddingTop="10dp"
+                android:layout_toRightOf="@id/CardView_Username"
+                android:layout_width="25dp"
+                android:textSize="22.5sp" />
+            <TextView
+                android:text="Exercise Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/CardView_ExerciseName"
+                android:textSize="22.5sp"
+                android:paddingTop="10dp"
+                android:layout_toRightOf="@id/CardView_Possess"
+                android:textColor="@android:color/black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_below="@+id/CardView_Title"
+            android:id="@+id/CardView_Video">
+            <VideoView
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_alignParentBottom="true"
-                android:orientation="horizontal"
-                android:layout_below="@+id/Card_Video_ImageView">
-                <ImageButton
-                    android:id="@+id/Up_Arrow_Button"
-                    android:layout_width="75dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/uparrow"
-                    android:scaleType="fitCenter"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2"
-                    android:layout_alignParentLeft="true"/>
-
-                <TextView
-                    android:id="@+id/Vote_Count"
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:text="ii"
-                    android:textSize="40sp"
-                    android:layout_toRightOf="@id/Up_Arrow_Button"/>
-
-                <ImageButton
-                    android:id="@+id/Down_Arrow_Button"
-                    android:layout_width="75dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/downarrow"
-                    android:scaleType="fitCenter"
-                    android:scaleX="1"
-                    android:scaleY="1"
-                    android:layout_toRightOf="@id/Vote_Count" />
-            </RelativeLayout>
+                android:layout_height="220dp"
+                android:id="@+id/Card_Video_VideoView"
+                android:background="@android:color/black" />
 
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/UserView_Info"
+            android:background="@android:color/background_light"
+            android:layout_below="@+id/CardView_Video"
+            android:layout_alignParentStart="true">
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="android:attr/ratingBarStyleSmall"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:id="@+id/ratingBar"
+                android:stepSize="0.1"
+                android:paddingLeft="5dp"
+                android:foregroundGravity="center_horizontal"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -9,14 +9,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import java.util.ArrayList;
+
 public class TabAdapter extends FragmentPagerAdapter {
     private final Context ctxt;
-    private int pageCount=10;
+    private int pageCount=4;
+    private ArrayList<PostObject>[] arrayLists;
 
-    public TabAdapter(Context ctxt, FragmentManager mgr) {
+    public TabAdapter(Context ctxt, FragmentManager mgr, ArrayList<PostObject>[] aL) {
         super(mgr);
-
         this.ctxt=ctxt;
+        arrayLists = aL;
     }
 
     @Override
@@ -26,7 +29,7 @@ public class TabAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return(TabFragment.newInstance(position));
+        return TabFragment.newInstance(position, arrayLists);
     }
 
     @Override

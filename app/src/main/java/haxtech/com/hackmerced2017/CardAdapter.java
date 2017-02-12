@@ -1,5 +1,6 @@
 package haxtech.com.hackmerced2017;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,8 +32,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         public ViewHolder(View c) {
             super(c);
             card = c;
-            user = (TextView) c.findViewById(R.id.UserView_Username);
-            category = (TextView) c.findViewById(R.id.UserView_ExerciseName);
+            user = (TextView) c.findViewById(R.id.CardView_Username);
+            category = (TextView) c.findViewById(R.id.CardView_ExerciseName);
+            video = (VideoView) c.findViewById(R.id.CardView_VideoView);
             //test = (TextView) c.findViewById(R.id.Vote_Count);
         }
     }
@@ -59,18 +61,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         //holder.test.setText(mDataset[position]);
-        holder.category.setText(mDataset.get(position).category);
-        holder.user.setText(mDataset.get(position).userID);
+        PostObject post = mDataset.get(position);
+        holder.category.setText(post.category);
+        holder.user.setText(post.userID);
+        holder.video.setVideoURI(Uri.parse(post.vidUrl));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.size();
-    }
-
-    private void test(String a){
-        Log.v(TAG, a);
     }
 }
 

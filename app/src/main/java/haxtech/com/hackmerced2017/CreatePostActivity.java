@@ -40,7 +40,6 @@ public class CreatePostActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_create_post);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        postTitle = (EditText) findViewById(R.id.postTitle);
         findViewById(R.id.postButton).setOnClickListener(this);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();

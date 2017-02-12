@@ -29,42 +29,24 @@ import java.util.Map;
 
 public class CreatePostActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseAuth auth;
-
-//    private EditText postTitle;
-    private DatabaseReference mDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        postTitle = (EditText) findViewById(R.id.postTitle);
         findViewById(R.id.postButton).setOnClickListener(this);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        auth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.postButton) {
-            writeNewPost("hello");
+//            writeNewPost("hello");
         }
     }
 
-    private void writeNewPost(String body) {
-        FirebaseUser curUser = auth.getCurrentUser();
-        String key = mDatabase.child("posts").push().getKey();
-        String userID = curUser.getUid();
-        Post post = new Post(userID, body, "https://testurl.com/12345.mp4");
-        Map<String, Object> postValues = post.toMap();
-        Map<String, Object> childUpdates = new HashMap<>();
-        childUpdates.put("/posts/" + key, postValues);
-        DatabaseReference listOfPostsRef = mDatabase.child("users").child(userID).child("posts");
-        listOfPostsRef.push().setValue(key);
-    }
+
 }
 

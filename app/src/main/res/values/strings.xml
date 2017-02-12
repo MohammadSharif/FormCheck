@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Form Check</string>
+    <string name="app_name">FormCheck</string>
     <string name="facebook_application_id" translatable="false">1355930624471183</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_post">PostActivity</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_user_view_"
+    android:id="@+id/activity_Detail_view_"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -13,7 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/UserView_Title"
+        android:id="@+id/DetailView_Title"
         android:background="@color/colorWhite"
         android:layout_marginTop="-10dp"
         android:gravity="center_horizontal">
@@ -22,7 +22,7 @@
             android:text="Username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/UserView_Username"
+            android:id="@+id/DetailView_Username"
             android:textSize="22.5sp"
             android:paddingTop="5dp"
             android:layout_alignParentStart="true" />
@@ -30,9 +30,9 @@
             android:text="'s"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:id="@+id/UserView_Possess"
+            android:id="@+id/DetailView_Possess"
             android:paddingTop="5dp"
-            android:layout_toRightOf="@id/UserView_Username"
+            android:layout_toRightOf="@id/DetailView_Username"
             android:layout_width="25dp"
             android:textSize="22.5sp" />
 
@@ -41,40 +41,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:id="@+id/UserView_ExerciseName"
+            android:id="@+id/DetailView_ExerciseName"
             android:textSize="22.5sp"
             android:paddingTop="5dp"
-            android:layout_toRightOf="@id/UserView_Possess"
+            android:layout_toRightOf="@id/DetailView_Possess"
             android:textColor="@android:color/black" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <VideoView
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:id="@+id/UserView_Video"
+        android:id="@+id/DetailView_Video"
         android:background="@android:color/black"
-        android:layout_below="@id/UserView_Title">
+        android:layout_below="@id/DetailView_Title">
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/yellowsharebutton"
-            android:scaleType="fitCenter"
-            android:scaleX="0.75"
-            android:scaleY="0.75"
-            android:background="@android:color/black"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-
-            android:id="@+id/UserView_ShareButton" />
-    </RelativeLayout>
+    </VideoView>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:id="@+id/UserView_Info"
+        android:id="@+id/DetailView_Info"
         android:background="@android:color/background_light"
-        android:layout_below="@+id/UserView_Video"
+        android:layout_below="@+id/DetailView_Video"
         android:layout_alignParentStart="true">
 
         <RatingBar
@@ -89,14 +77,12 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:paddingTop="8dp" />
-
-
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:id="@+id/UserView_Comments"
-        android:layout_below="@id/UserView_Info"
+        android:id="@+id/DetailView_Comments"
+        android:layout_below="@id/DetailView_Info"
         android:background="@color/colorLightGray">
 
         <android.support.v7.widget.RecyclerView

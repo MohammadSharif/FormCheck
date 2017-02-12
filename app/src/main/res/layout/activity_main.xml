@@ -38,6 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/ic_videocam_black_24dp" />
 
 </FrameLayout>

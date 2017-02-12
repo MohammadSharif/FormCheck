@@ -13,17 +13,23 @@ import android.widget.Toast;
 public class UserViewActivity extends AppCompatActivity {
 
     private RatingBar ratingBar;
-    private TextView textRatingValue;
+    private TextView textRatingValue, usernameText, excerciseText;
     private Button buttonSubmit;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private String[] mDataset = {""};
 
+    private String body, name, userID, videoUrl, category;
+    private Double avgRating;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_view);
+
+        initLocal(savedInstanceState);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         // use this setting to improve performance if you know that changes
@@ -37,6 +43,20 @@ public class UserViewActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         mAdapter = new MyAdapter(mDataset);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void initLocal(Bundle savedInstanceState) {
+        body = (String) getIntent().getExtras().get("body");
+        name = (String) getIntent().getExtras().get("name");
+        userID = (String) getIntent().getExtras().get("userID");
+        videoUrl = (String) getIntent().getExtras().get("videoUrl");
+        category = (String) getIntent().getExtras().get("category");
+        avgRating = (Double) getIntent().getExtras().get("avgRating");
+
+        usernameText = (TextView) findViewById(R.id.DetailView_Username);
+        excerciseText = (TextView) findViewById(R.id.DetailView_ExerciseName) ;
+        usernameText.setText(name);
+        excerciseText.setText(body);
     }
 
     public void addListenerOnRatingBar() {

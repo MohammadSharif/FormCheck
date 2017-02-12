@@ -60,14 +60,12 @@ public class TabFragment extends Fragment {
                 new RecyclerItemClickListener(getContext(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        // TODO Handle item click
                         Intent details_intent = new Intent(getContext(), UserViewActivity.class);
-                        details_intent.putExtra("name",posts[position - 1].get(position).toString());
-                        details_intent.putExtra("body",posts[position - 1].get(position).toString());
-                        details_intent.putExtra("userID",posts[position - 1].get(position).toString());
-                        details_intent.putExtra("comments",posts[position - 1].get(position).toString());
-                        details_intent.putExtra("name",posts[position - 1].get(position).toString());
-
+                        details_intent.putExtra("name",posts[position].get(position).name);
+                        details_intent.putExtra("body",posts[position].get(position).body);
+                        details_intent.putExtra("userID",posts[position].get(position).userID);
+                        details_intent.putExtra("category", posts[position].get(position).category);
+                        details_intent.putExtra("avgRating",posts[position].get(position).avgRating);
                         startActivity(details_intent);
                     }
                 }));

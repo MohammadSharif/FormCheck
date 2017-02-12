@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/UserView_Username"
-                android:textSize="22.5sp"
+                android:textSize="20sp"
                 android:paddingTop="5dp"
                 android:layout_alignParentStart="true"
                 android:textColor="@color/buttonTextColor" />
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:id="@+id/UserView_ExerciseName"
-                android:textSize="22.5sp"
+                android:textSize="20sp"
                 android:paddingTop="5dp"
                 android:layout_toRightOf="@id/UserView_Possess"
                 android:textColor="?attr/colorAccent" />
@@ -56,11 +56,12 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
             android:id="@+id/UserView_Info"
             android:background="@color/com_facebook_button_background_color_disabled"
             android:layout_below="@id/UserView_Title"
-            android:layout_alignParentStart="true">
+            android:layout_alignParentStart="true"
+            android:layout_height="420dp"
+            android:layout_alignParentEnd="true">
 
             <ImageButton
                 android:layout_width="50dp"
@@ -74,6 +75,13 @@
                 android:layout_alignParentTop="true"
                 android:id="@+id/UserView_ShareButton" />
 
+            <VideoView
+                android:id="@+id/User_VideoView"
+                android:layout_width="match_parent"
+                android:layout_height="215dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"/>
+
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,19 +91,9 @@
                 android:id="@+id/ratingBar"
                 android:stepSize="0.1"
                 android:foregroundGravity="center_horizontal"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/Card_Video_VideoView"
-                android:layout_marginTop="-2.5dp" />
-
-            <VideoView
-                android:id="@+id/User_VideoView"
-                android:layout_width="match_parent"
-                android:layout_height="215dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"/>
-
-
+                android:layout_below="@+id/User_VideoView"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </RelativeLayout>
 </android.support.v7.widget.CardView>
+
